@@ -15,10 +15,7 @@ public class Historico {
 
     }
 
-    public void exibirHistorico() {
-        System.out.println("Historico: ");
-        for (String expressao : hist) {
-            System.out.println(expressao);
-        }
+    public List<String> getHistorico() {
+        return hist;
     }
 }
