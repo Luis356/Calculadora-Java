@@ -38,7 +38,8 @@ public class App extends Application {
         Button calcularButton = new Button("Calcular");
         calcularButton.setOnAction(e -> {
             String expressao = expressaoTextArea.getText();
-            new Recebe(expressao, historico);
+            String[] expressoesArray = expressao.split("\n");
+            new Recebe(expressoesArray, historico);
             atualizarHistoricoTextArea(historicoTextArea);
             expressaoTextArea.clear();
         });

@@ -9,11 +9,13 @@ public class Recebe {
 
     Scanner scan = new Scanner(System.in);
 
-    public Recebe(String resposta, Historico historico) {
-        this.expressao = resposta;
-        this.historico = historico;
-        solicitaExpressao();
-        chamaCalculo();
+    public Recebe(String[] resposta, Historico historico) {
+        for (String expressao : resposta) {
+            this.expressao = expressao;
+            this.historico = historico;
+            solicitaExpressao();
+            chamaCalculo();
+        }
     }
 
     public void solicitaExpressao() {
