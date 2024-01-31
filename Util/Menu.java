@@ -3,30 +3,28 @@ package Util;
 import java.util.Scanner;
 
 public class Menu {
-    private String expressao;
+    private int resultadoAtual; // Novo atributo para armazenar o resultado atual
+    private Historico historico;
 
     public Menu() {
-        Boolean roda = true;
-        Historico historico = new Historico();
+        this.resultadoAtual = 0; // Inicializa o resultado atual
+        this.historico = new Historico();
         Scanner scan = new Scanner(System.in);
+        System.out.println("Digite a expressão (ou 'h' para exibir o histórico): ");
 
         do {
-
-            System.out.println("Digite a expressão a ser calculada: ");
             String expressao = scan.nextLine();
+
             if (expressao.equalsIgnoreCase("h")) {
-
                 historico.exibirHistorico();
-                roda = false;
-
-            } else {
-
-                Recebe rec = new Recebe(expressao, historico);
-
+                break; // Encerra o loop se o usuário desejar exibir o histórico
             }
 
-        } while (roda);
+            Recebe rec = new Recebe(expressao, historico, resultadoAtual);
+            resultadoAtual = rec.getValorUm(); // Atualiza o resultado atual
+
+        } while (true);
+
         scan.close();
     }
-
 }

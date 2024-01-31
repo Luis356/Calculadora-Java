@@ -7,25 +7,35 @@ public class Recebe {
     private String expressao;
     private Historico historico;
 
-    public Recebe(String expressao, Historico historico) {
+    public Recebe(String expressao, Historico historico, int resultadoAtual) {
         this.expressao = expressao;
         this.historico = historico;
-        solicitaExpressao();
-        chamaCalculo();
+        solicitaExpressao(resultadoAtual);
     }
 
-    public void solicitaExpressao() {
+    public void solicitaExpressao(int resultadoAtual) {
         String[] frase = getExpressao().split(" ");
-        setValorUm(Integer.parseInt(frase[0]));
-        setOperador(frase[1]);
-        setValorDois(Integer.parseInt(frase[2]));
+
+        if (frase.length == 3) {
+            // Se a expressão estiver vazia, é a primeira execução, então solicita a
+            // expressão completa
+            setValorUm(Integer.parseInt(frase[0]));
+            setOperador(frase[1]);
+            setValorDois(Integer.parseInt(frase[2]));
+            chamaCalculo();
+        } else {
+            // Caso contrário, solicita apenas o operador e o valor
+            setValorUm(resultadoAtual);
+            setOperador(frase[0]);
+            setValorDois(Integer.parseInt(frase[1]));
+            chamaCalculo();
+        }
     }
 
     public void chamaCalculo() {
-
         Calcula comp = new Calcula(getValorUm(), getOperador(), getValorDois(), getExpressao(), historico);
         int resultado = comp.getResultado();
-        System.out.println("Resultado: " + resultado);
+        System.out.println("= " + resultado);
 
     }
 
