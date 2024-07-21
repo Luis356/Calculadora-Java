@@ -1,4 +1,4 @@
-package Util;
+package Utilitarios;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -21,8 +21,11 @@ public class Historico {
     }
 
     public void exibirHistorico() {
+        ControleTela controleTela = new ControleTela();
+        controleTela.clearScreen();
+        
         System.out.println("Historico: \n");
-        for (String item : getHistorico()) {
+        for (String item : hist) {
             System.out.println(item);
         }
 
